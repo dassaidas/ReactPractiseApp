@@ -51,26 +51,26 @@ function ProductForm() {
     setErrors({});
     alert("Product added successfully!");
     // Here you can also send the product data to your backend or perform any other action
-    fetch("http://localhost:5000/readings/addProduct", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-      },
-      body: JSON.stringify(product),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Product added successfully:", data);
-      })
-      .catch((error) => {
-        console.error("Error adding product:", error);
-      });
+    // fetch("http://localhost:5000/readings/addProduct", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "Accept": "application/json",
+    //   },
+    //   body: JSON.stringify(product),
+    // })
+    //   .then((response) => {
+    //     if (!response.ok) {
+    //       throw new Error("Network response was not ok");
+    //     }
+    //     return response.json();
+    //   })
+    //   .then((data) => {
+    //     console.log("Product added successfully:", data);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error adding product:", error);
+    //   });
   };
 
   return (

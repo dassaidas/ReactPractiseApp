@@ -3,6 +3,10 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import RouteLayout from './Components/RouteLayout.jsx'
+import SampleLayout from './Components/SampleLayout.jsx'
+
+// Import Bootstrap JavaScript
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 function App() {
   const [count, setCount] = useState(0)
 
@@ -29,6 +33,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p> */}
       <RouteLayout />
+      {/* <SampleLayout /> */}
     </>
   )
 }
