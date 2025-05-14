@@ -23,7 +23,7 @@ export function ProductDetails() {
   }, [id]);
 
   return (
-    <>
+    <div className="container mt-4">
       <h4>Product Details for Product ID : {id}</h4>
       <div className="card">
         <div className="card-body">
@@ -35,6 +35,6 @@ export function ProductDetails() {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }

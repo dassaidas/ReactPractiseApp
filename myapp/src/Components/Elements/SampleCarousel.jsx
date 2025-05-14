@@ -28,7 +28,7 @@ const SampleCarousel = () => {
       <div className="carousel-inner">
         <div className="carousel-item active">
           <img
-            src="https://wallpapers.com/images/featured/iron-man-ouqxo5w2b59h0042.jpg"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuZgXxeZrWNaSyc01XIxHAOQaOQyfz1lpX_Q&s"
             className="d-block w-100"
             alt="First Slide"
           />

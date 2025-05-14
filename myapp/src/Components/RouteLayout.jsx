@@ -1,12 +1,12 @@
 import { lazy, Suspense } from "react";
-import ErrorPage from "./ErrorPage";
-import HomePage from "./HomePage";
-import NavigationBar from "./NavigationBar";
-import { ProductDetails } from "./ProductDetails";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SampleLayout from "./SampleLayout";
+import NavigationBar from "./Elements/NavigationBar";
+import HomePage from "./HomePage";
 import LoginForm from "./Forms/LoginForm";
-import UserProvider, { UserContext } from "../Context/UserProvider";
+import SampleLayout from "./SampleLayout";
+import { ProductDetails } from "./ProductDetails";
+import UserProvider from "../Context/UserProvider";
+import ProtectedRoute from "./Security/ProtectedRoute";
 
 function RouteLayout() {
   const SearchFilter = lazy(() => import("./SearchFilter"));
@@ -14,32 +14,67 @@ function RouteLayout() {
   const AddProductFormik = lazy(() =>
     import("./ProductsArea/AddProductFormik")
   );
+
   return (
     <>
       <BrowserRouter>
         <UserProvider>
           <NavigationBar />
           <Suspense fallback={<div>Loading...</div>}>
-            <div className="container">
-              {/* <h1 className="text-center">
-              Welcome to the Product Management App
-            </h1> */}
-            </div>
             <Routes>
-              <Route path="/home" element={<HomePage />}></Route>
-              <Route path="/products" element={<SearchFilter />}></Route>
-              <Route path="*" element={<ErrorPage />}></Route>
+              {/* Public Routes */}
+              <Route path="/login" element={<LoginForm />} />
+              <Route path="*" element={<HomePage />} />
+
+              {/* Protected Routes */}
+              <Route
+                path="/home"
+                element={
+                  <ProtectedRoute>
+                    <HomePage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/products"
+                element={
+                  <ProtectedRoute>
+                    <SearchFilter />
+                  </ProtectedRoute>
+                }
+              />
               <Route
                 path="/product-view/:id"
-                element={<ProductDetails />}
-              ></Route>
-              <Route path="/addProduct" element={<ProductForm />}></Route>
-              <Route path="/SampleLayout" element={<SampleLayout />}></Route>
+                element={
+                  <ProtectedRoute>
+                    <ProductDetails />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/addProduct"
+                element={
+                  <ProtectedRoute>
+                    <ProductForm />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/SampleLayout"
+                element={
+                  <ProtectedRoute>
+                    <SampleLayout />
+                  </ProtectedRoute>
+                }
+              />
               <Route
                 path="/addProductFormik"
-                element={<AddProductFormik />}
-              ></Route>
-              <Route path="/login" element={<LoginForm />}></Route>
+                element={
+                  <ProtectedRoute>
+                    <AddProductFormik />
+                  </ProtectedRoute>
+                }
+              />
             </Routes>
           </Suspense>
         </UserProvider>
@@ -47,4 +82,5 @@ function RouteLayout() {
     </>
   );
 }
+
 export default RouteLayout;

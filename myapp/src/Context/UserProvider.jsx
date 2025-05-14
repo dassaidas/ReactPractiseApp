@@ -6,7 +6,7 @@ export const UserContext = createContext();
 
 function UserProvider({ children }) {
   const [user, setUser] = useState(AuthProvider.getAuthUser());
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const loginUser = (userData) => {
     setUser(userData);
     AuthProvider.setAuthUser(userData);

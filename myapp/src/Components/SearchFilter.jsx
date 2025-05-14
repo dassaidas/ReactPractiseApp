@@ -26,7 +26,7 @@ function SearchFilter() {
   };
 
   return (
-    <>
+    <div className="container mt-4 border border-2 rounded-3 shadow-sm">
       <div className="col-sm-12 mt-5">
         <h2>Products List</h2>
         <div className="row">
@@ -58,7 +58,7 @@ function SearchFilter() {
 
       <ProductsList selectedTerm={searchTerm} notifyMessage={(e)=>onProductsFiltered(e)}/>
         <h6 className="text-right text-success">{totalFilteredProducts}</h6>
-    </>
+    </div>
   );
 }
 

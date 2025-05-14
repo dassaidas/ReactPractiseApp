@@ -45,8 +45,8 @@ const AddProductFormik = () => {
   };
 
   return (
-    <div className="container mt-4">
-      <div className="row">
+    <div className="container mt-4 mb-3 border border-2 rounded-3 shadow-sm">
+      <div className="row mt-4">
         <div className="col-md-6">
           <h2>Add Product</h2>
           <Formik

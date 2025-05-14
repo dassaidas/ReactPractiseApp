@@ -28,7 +28,7 @@ function ProductsList(props) {
     navigate(`/product-view/${productId}`);
   };
   return (
-    <div className="col-sm-12">
+    <div className="container mt-4">
       <table className="table table-bordered table-striped">
         <thead>
           <tr>

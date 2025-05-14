@@ -3,9 +3,11 @@ import * as Yup from "yup";
 import AuthProvider from "../../Services/AuthService";
 import { useContext } from "react";
 import { UserContext } from "../../Context/UserProvider";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
   const { loginUser } = useContext(UserContext);
+  const navigate = useNavigate();
   const handleSubmit = (values) => {
     // Handle form submission
     console.log("Form submitted with values:", values);
@@ -16,6 +18,7 @@ function LoginForm() {
         username: values.username,
         password: values.password,
       });
+      navigate("/SampleLayout");
     } else {
       alert("Invalid username or password");
     }
@@ -33,22 +36,27 @@ function LoginForm() {
       .min(5, "Password must be at least 6 characters"),
   });
   return (
-    <div className="container mt-4 align-items-center">
+    <div className="container mt-4  d-flex justify-content-center border border-2 rounded-3 shadow-sm">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        <Form>
+        
+        <Form className="form-signin">
+        <label className="form-label mt-3">
+          <h2 className="text-center">Please Login.</h2>
+        </label>
           <div className="mb-3 form-group">
-            <label htmlFor="username" className="form-label">
+            {/* <label htmlFor="username" className="form-label">
               Username
-            </label>
+            </label> */}
             <Field
               type="text"
               id="username"
               name="username"
               className="form-control"
+              placeholder="User Name"
             />
             <ErrorMessage
               name="username"
@@ -58,14 +66,15 @@ function LoginForm() {
           </div>
 
           <div className="mb-3 form-group">
-            <label htmlFor="password" className="form-label">
+            {/* <label htmlFor="password" className="form-label">
               Password
-            </label>
+            </label> */}
             <Field
               type="password"
               id="password"
               name="password"
               className="form-control"
+              placeholder="Password"
             />
             <ErrorMessage
               name="password"
@@ -73,10 +82,11 @@ function LoginForm() {
               className="text-danger"
             />
           </div>
-
-          <button type="submit" className="btn btn-primary">
-            Login
-          </button>
+          <div className="form-submit">
+            <button type="submit" className="btn btn-primary button-flex" fullWidth>
+              Login
+            </button>
+          </div>
         </Form>
       </Formik>
     </div>
