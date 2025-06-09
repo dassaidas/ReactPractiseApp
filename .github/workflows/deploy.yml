@@ -3,37 +3,35 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main # Trigger deployment on pushes to the main branch
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: myapp # 👈 All commands run from 'myapp' folder
+
     steps:
-      # Step 1: Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: "npm"
 
-      # Step 3: Install dependencies (requires package-lock.json to exist)
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Build the project (React build output goes to 'build')
       - name: Build the project
         run: npm run build
 
-      # Step 5: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build
+          publish_dir: myapp/build # 👈 Important: points to build output
           publish_branch: gh-pages
-          clean: true
