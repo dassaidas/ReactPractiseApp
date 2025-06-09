@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ProductsList from "./ProductsList.jsx"; // Adjust the path as necessary
 import { categoriesData } from "../Data/SampleData.jsx";
+import store from "../redux/store/store.js";
+import { ProductAction } from "../redux/Actions/product-action.jsx";
+import { useSelector } from "react-redux";
 
 function SearchFilter() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -11,6 +14,9 @@ function SearchFilter() {
   //setSearchTerm is used to set the search term
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
+    store.dispatch(ProductAction.SetCategory(event.target.value)); // Dispatch the selected category to the Redux store
+    //const selectedCategory = useSelector((state) => state.productReducer.selectedCategory);
+    alert("Selected Category: " + store.getState().productReducer.selectedCategory);
   };
 
   // Filter categories based on the search term
