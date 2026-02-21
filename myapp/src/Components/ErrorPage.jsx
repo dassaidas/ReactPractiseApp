@@ -12,6 +12,7 @@ function ErrorPage() {
 
       <NavLink to="/home" className="btn btn-primary mt-3">
         Go Back to Home yaar
+        Go Back to Home lol
       </NavLink>
     </div>
   );
